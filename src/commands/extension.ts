@@ -2,15 +2,17 @@ import * as vscode from 'vscode';
 
 
 export function activate(context: vscode.ExtensionContext) {
+  const languages = [{ scheme: 'file', language: 'elixir' }, { scheme: 'file', language: 'phoenix-heex' }];
+
   // Register the definition provider for Elixir files
   const definitionProvider = vscode.languages.registerDefinitionProvider(
-    { scheme: 'file', language: 'elixir' },
+    languages,
     new PhoenixComponentDefinitionProvider()
   );
 
   // Register the reference provider for Elixir files
   const referenceProvider = vscode.languages.registerReferenceProvider(
-    { scheme: 'file', language: 'elixir' },
+    languages,
     new PhoenixComponentReferenceProvider()
   );
 
